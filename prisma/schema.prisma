@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  password  String
+  invoices  Invoice[]  // Relacionamento Invoice
+}
+
+model Invoice {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  imageUrl  String
+  text      String
+  queries   Query[]   // Relacionamento Query
+}
+
+model Query {
+  id         Int      @id @default(autoincrement())
+  query      String
+  response   String
+  invoiceId  Int
+  invoice    Invoice  @relation(fields: [invoiceId], references: [id])
+}

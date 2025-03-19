@@ -12,7 +12,7 @@ async function bootstrap() {
 
   // CORS
   app.enableCors({
-    origin: ['http://localhost:3000', 'http://127.0.0.1:3000'], // Permite requisições dessas origens
+    origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'https://paggo-case-front-7jqj.vercel.app'], // Permite requisições dessas origens
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
